@@ -7,10 +7,17 @@ This version also removes the IGRID veg layer precip correction. The relevant li
 --Modified from the "season test" code of November 2019.
 This version reads the reprojected tif files from the MACA GCMs instead of daymet netCDF files.
 """
-import netCDF4,datetime,os,multiprocessing
-from osgeo import gdal
+import datetime
+import multiprocessing
+import os
+import sys
+import time
+
+import netCDF4
 import numpy as np
-import time,sys
+import utm
+from osgeo import gdal
+
 np.seterr(invalid = 'ignore') #Don't let nans in rasters raise a warning.
 #np.seterr(over = 'ignore') #These have been checked and screen valid exceptions.
 np.seterr(divide = 'ignore') #could comment out for debugging if wish. 
@@ -957,20 +964,15 @@ if __name__ == '__main__':
 burroughs_data_path = "/home/steve/OneDrive/burroughs_wb/data/"
 
 elev = gdal.Open(burroughs_data_path + "burroughs_creek_USGS1m_clipped_nad83.tif")
-elev_wgs84 = gdal.Open(burroughs_data_path + "burroughs_creek_USGS1m_clipped_wgs84.tif")
 slope = gdal.Open(burroughs_data_path + "planting_unit_slope.tif")
 aspect = gdal.Open(burroughs_data_path + "planting_unit_aspect.tif")
 
 np.where(aspect.ReadAsArray() < 0, np.nan, aspect.ReadAsArray())
 np.where(slope.ReadAsArray() < 0, np.nan, slope.ReadAsArray())
 
-
 elev.ReadAsArray().shape
 slope.ReadAsArray().shape
 aspect.ReadAsArray().shape
-
-elev.attrib["lat"]
-
 
 def pixel2coord(x, y, raster):
  """Returns global coordinates from pixel x, y coords"""
@@ -987,9 +989,9 @@ def raster2xy(raster):
     return (x, y)
 
 new_x, new_y = raster2xy(elev)
-new_lons, new_lats = raster2xy(elev_wgs84)
+new_lons, new_lats = utm.to_latlon(new_x, new_y, 12, 'N')
 
 aspect_folded = fold_aspect(aspect.ReadAsArray())
 
-head_load = heat_load(new_lats, )
+heat_load = heat_load(new_lats, slope.ReadAsArray(), aspect_folded)
 
