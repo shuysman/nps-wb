@@ -1,0 +1,4 @@
+* Inputs
+- Climate tifs
+  - gridMET Historical
+  - MACA '{year_chunk}_macav2metdata_{param}_{model_name1}_{model_name2}_{scenario}_{year1}_{year2}_CONUS_dail_reprojected_with_extent{daynumber}_resampled.tif.zip'
