@@ -37,6 +37,7 @@ process_gcm <- function(options) {
         yday <- yday(time(lyr))
         year <- year(time(lyr))
 
+        lyr <- crop(lyr, reference)
         lyr <- project(lyr, reference, method = "near")
         lyr <- resample(lyr, reference, method = "near")
         lyr <- crop(lyr, reference)
@@ -48,11 +49,11 @@ process_gcm <- function(options) {
     }
 }
 
-models <- c("NorESM1-M", "MRI-CGCM3", "MIROC-ESM-CHEM", "MIROC5", "IPSL-CM5A-LR", "inmcm4", "HadGEM2-CC365", "CSIRO-Mk3-6-0", "CNRM-CM5", "CanESM2", "BNU-ESM", "GFDL-ESM2G")
+models <- c("NorESM1-M", "MRI-CGCM3", "MIROC-ESM-CHEM", "MIROC5", "IPSL-CM5A-LR", "inmcm4", "HadGEM2-CC365", "CSIRO-Mk3-6-0", "CNRM-CM5", "CanESM2", "BNU-ESM", "GFDL-ESM2G", "CCSM4")
 ### CCSM4 tmmn data missing
 scenarios <- c('rcp85', 'rcp45')
 ## variables <- c("tmmx", "tmmn", "pr")
-variables <- c("tmmx", "tmmn")
+variables <- c("tmmx", "tmmn", "pr")
 
 options <- expand.grid(variables = variables, model = models, scenario = scenarios) %>%
     t() %>%
