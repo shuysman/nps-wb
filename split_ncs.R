@@ -9,12 +9,14 @@ terraOptions(verbose = TRUE)
 
 ##r <- rast("/media/smithers/shuysman/data/MACA/gye/forecasts/daily/pr_BNU-ESM_rcp45_2006-2099_daily_gye.nc")
 
-reference <- rast("/home/steve/OneDrive/burroughs_wb/data/burroughs_creek_USGS1m_clipped_nad83.tif")
+##reference <- rast("/home/steve/OneDrive/burroughs_wb/data/burroughs_creek_USGS1m_clipped_nad83.tif")
+reference <- rast("./burroughs_creek_USGS1m_clipped_nad83.tif")
 
-
-in_dir <- file.path("/media/smithers/shuysman/data/MACA/gye/forecasts/daily/")
-out_dir <- file.path("/media/smithers/shuysman/data/MACA/gye/forecasts/daily-split/")
-#out_dir <- file.path("/tmp/test/")
+##in_dir <- file.path("/media/smithers/shuysman/data/MACA/gye/forecasts/daily/")
+in_dir <- file.path("~/data/MACA/gye/forecasts/daily/")
+##out_dir <- file.path("/media/smithers/shuysman/data/MACA/gye/forecasts/daily-split/")
+out_dir <- file.path("~/out/daily-split/")
+##out_dir <- file.path("/tmp/test/")
 
 process_gcm <- function(options) {
     variable <- options[1]
@@ -58,6 +60,6 @@ options <- expand.grid(variables = variables, model = models, scenario = scenari
 
 mclapply(options,
          FUN = process_gcm,
-         mc.cores = parallel::detectCores() - 4)
+         mc.cores = parallel::detectCores() - 2)
 
     #MACA File Format = {YEAR_CHUNK}_macav2metdata_{PARAM}_{MODEL_PART1}_{MODEL_PART2}_{SCENARIO}_{FIRST_YEAR_OF_CHUNK}_{LAST_YEAR_OF_CHUNK}_CONUS_dail_reprojected_with_extent{DAYNUMBER}_resampled.tif
