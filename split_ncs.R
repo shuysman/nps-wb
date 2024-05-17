@@ -47,7 +47,7 @@ process_gcm <- function(options) {
     }
 }
 
-modesl <- c(
+models <- c(
     "bcc-csm1-1-m",
     "bcc-csm1-1",
     "BNU-ESM",
