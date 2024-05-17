@@ -10,7 +10,7 @@ terraOptions(verbose = TRUE)
 ##r <- rast("/media/smithers/shuysman/data/MACA/gye/forecasts/daily/pr_BNU-ESM_rcp45_2006-2099_daily_gye.nc")
 
 ##reference <- rast("/home/steve/OneDrive/burroughs_wb/data/burroughs_creek_USGS1m_clipped_nad83.tif")
-reference <- rast("./burroughs_creek_USGS1m_clipped_nad83.tif")
+reference <- rast("./data/burroughs_creek_USGS1m_clipped_nad83.tif")
 
 ##in_dir <- file.path("/media/smithers/shuysman/data/MACA/gye/forecasts/daily/")
 in_dir <- file.path("~/data/MACA/gye/forecasts/daily/")
