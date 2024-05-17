@@ -36,9 +36,9 @@ process_gcm <- function(options) {
         year <- year(time(lyr))
 
         lyr <- project(lyr, reference, method = "near")
-        lyr <- crop(lyr, reference)
-        lyr <- resample(lyr, reference, method = "near")
         ##lyr <- crop(lyr, reference)
+        lyr <- resample(lyr, reference, method = "near")
+        lyr <- crop(lyr, reference)
         
         writeRaster(lyr,
                     filename = file.path(out_dir,
