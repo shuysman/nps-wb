@@ -49,7 +49,7 @@ process_gcm <- function(options) {
     }
 }
 
-models <- c("NorESM1-M", "MRI-CGCM3", "MIROC-ESM-CHEM", "MIROC5", "IPSL-CM5A-LR", "inmcm4", "HadGEM2-CC365", "CSIRO-Mk3-6-0", "CNRM-CM5", "CanESM2", "BNU-ESM", "GFDL-ESM2G", "CCSM4")
+models <- c("NorESM1-M", "MRI-CGCM3", "MIROC-ESM-CHEM", "MIROC5", "IPSL-CM5A-LR", "inmcm4", "HadGEM2-CC365", "CSIRO-Mk3-6-0", "CNRM-CM5", "CanESM2", "BNU-ESM", "GFDL-ESM2G")
 ### CCSM4 tmmn data missing
 scenarios <- c('rcp85', 'rcp45')
 ## variables <- c("tmmx", "tmmn", "pr")
