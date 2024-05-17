@@ -43,7 +43,7 @@ process_gcm <- function(options) {
         
         writeRaster(lyr,
                     filename = file.path(out_dir,
-                                         glue("{year}_macav2metdata_pr_r1i1p1_{model}_{scenario}_{first_year}_{second_year}_GYE_daily_reprojected_with_extent_{n}_resampled.tif")),
+                                         glue("{n}_macav2metdata_pr_r1i1p1_{model}_{scenario}_{first_year}_{second_year}_GYE_daily_reprojected_with_extent_{n}_resampled.tif")),
                     overwrite = TRUE)
     }
 }
