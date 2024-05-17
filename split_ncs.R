@@ -3,8 +3,6 @@ library(glue)
 library(terra)
 library(parallel)
 
-cores <- 1
-
 terraOptions(verbose = TRUE)
 
 ##r <- rast("/media/smithers/shuysman/data/MACA/gye/forecasts/daily/pr_BNU-ESM_rcp45_2006-2099_daily_gye.nc")
@@ -64,3 +62,8 @@ mclapply(options,
          mc.cores = parallel::detectCores() - 2)
 
     #MACA File Format = {YEAR_CHUNK}_macav2metdata_{PARAM}_{MODEL_PART1}_{MODEL_PART2}_{SCENARIO}_{FIRST_YEAR_OF_CHUNK}_{LAST_YEAR_OF_CHUNK}_CONUS_dail_reprojected_with_extent{DAYNUMBER}_resampled.tif
+
+
+## models <- c("inmcm4")
+## scenarios <- c("rcp85")
+## variables <- c("tmmx")
